@@ -1,14 +1,38 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { Button, Form, Alert } from 'react-bootstrap';
+import { MyContext } from '../context';
 
 const Stage1 = () => {
+    const context = useContext(MyContext);
     const textInput = useRef();
+    const [error, setError] = useState([false, '']);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const value = textInput.current.value;
-        console.log(value);
+        const validate = validateInput(value);
+        if (validate) {
+            setError([false, '']);
+            context.addPlayers(value);
+            textInput.current.value = '';
+        }
     };
+
+    useEffect(() => {
+        console.log(context.players);
+    }, [context.players]);
+
+    const validateInput = (value) => {
+        if (value === ''){
+            setError([true, 'Sorry, you need to add something']);
+            return false;
+        }
+        if (value.length <= 2) {
+            setError([true, 'Sorry, you need to add at least 3 characters']);
+            return false;
+        }
+        return true;
+    }
 
     return (
         <div>
@@ -20,6 +44,14 @@ const Stage1 = () => {
                         You will be added to the list of players who might have to end up paying for everyone. Are you sure?
                     </Form.Text>
                 </Form.Group>
+
+                {
+                    error[0] ? 
+                        <Alert>
+                            {error[1]}
+                        </Alert> 
+                        : null
+                }
 
                 <Button
                     className='miami'

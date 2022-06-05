@@ -5,11 +5,17 @@ const MyContext = React.createContext();
 const MyProvider = (props) => {
 
     const [stage, setStage] = useState(1);
-    console.log(stage);
+    const [players, setPlayers] = useState([]);
+
+    const addPlayers = (name) => {
+        setPlayers( (prevState) => {
+            return [...prevState, name];
+        } )
+    }
 
     return (
         <>
-            <MyContext.Provider value = {{ stage }}>
+            <MyContext.Provider value = {{ stage, players, addPlayers }}>
                 {props.children}
             </MyContext.Provider>
         </>
