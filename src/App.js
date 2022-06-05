@@ -11,6 +11,7 @@ const App = (props) => {
     
     return (
         <div>
+            <header>Who Pays the Bill?</header>
             {context.stage === 1 ? <Stage1 /> : <Stage2 /> }
         </div>
     );

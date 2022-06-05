@@ -4,7 +4,8 @@ const MyContext = React.createContext();
 
 const MyProvider = (props) => {
 
-    const {stage, setStage} = useState(1);
+    const [stage, setStage] = useState(1);
+    console.log(stage);
 
     return (
         <>
