@@ -13,7 +13,7 @@ const Stage1 = () => {
         const validate = validateInput(value);
         if (validate) {
             setError([false, '']);
-            context.addPlayers(value);
+            context.addPlayer(value);
             textInput.current.value = '';
         }
     };
@@ -23,7 +23,7 @@ const Stage1 = () => {
     }, [context.players]);
 
     const validateInput = (value) => {
-        if (value === ''){
+        if (value === '') {
             setError([true, 'Sorry, you need to add something']);
             return false;
         }
@@ -39,17 +39,17 @@ const Stage1 = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Player Name</Form.Label>
-                    <Form.Control ref = {textInput} type="text" placeholder="Enter Player Name" />
+                    <Form.Control ref={textInput} type="text" placeholder="Enter Player Name" />
                     <Form.Text className="text-muted">
                         You will be added to the list of players who might have to end up paying for everyone. Are you sure?
                     </Form.Text>
                 </Form.Group>
 
                 {
-                    error[0] ? 
+                    error[0] ?
                         <Alert>
                             {error[1]}
-                        </Alert> 
+                        </Alert>
                         : null
                 }
 
@@ -60,6 +60,43 @@ const Stage1 = () => {
                 >
                     Add Player
                 </Button>
+                {
+                    context.players && context.players.length > 0 ?
+                        <>
+                            <hr />
+
+                            <div>
+                                <ul className='list-group'>
+                                    {
+                                        context.players.map((player, idx) => 
+                                            (
+                                                <li key={player} className="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                                    {player}
+                                                    <span
+                                                        className = "badge bg-danger"
+                                                        onClick={() => {
+                                                            context.removePlayer(idx)
+                                                        }}
+                                                    >
+                                                        X
+                                                    </span>
+                                                </li>
+                                            )
+                                        )
+                                    }
+                                </ul>
+                                <div
+                                    className='action_button'
+                                    onClick={() => {
+                                        alert("Stage 2")
+                                    }}
+                                >
+                                    Next
+                                </div>
+                            </div>
+                        </>
+                        : null
+                }
             </Form>
         </div>
     );
