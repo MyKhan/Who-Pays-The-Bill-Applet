@@ -4,6 +4,7 @@ import Stage1 from './components/stage1';
 import Stage2 from './components/stage2';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = (props) => {
 
