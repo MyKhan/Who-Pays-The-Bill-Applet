@@ -5,3 +5,16 @@ body{
 div {
     text-align: center;
 }
+
+header {
+    font-size: x-large;
+}
+
+.action_button {
+    border: 1px solid red;
+    width: 200px;
+    text-align: center;
+    margin:0 auto;
+    display:block;
+    cursor: pointer;
+}

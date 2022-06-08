@@ -7,15 +7,35 @@ const Stage2 = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-          console.log('This will run after 1 second!')
+          context.getLooser()
         }, 2000);
         return () => clearTimeout(timer);
       }, [context.stage]);
 
     return (
-        <div>
-            Stage 2
-        </div>
+        <>
+          <div className='result_wrapper'>
+            <h4>The Looser issss.... (Drum Roll)</h4>
+            {context.result}
+          </div>
+
+          <div
+            className='action_button'
+            onClick={() => {
+              context.reset();
+            }}  
+          >
+            Start Over
+          </div>
+          <div
+            className='action_button'
+            onClick={() => {
+              context.getLooser();
+            }}  
+          >
+            Get New Looser
+          </div>
+        </>
     );
 };
 

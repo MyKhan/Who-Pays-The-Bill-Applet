@@ -18,10 +18,6 @@ const Stage1 = () => {
         }
     };
 
-    useEffect(() => {
-        console.log(context.players);
-    }, [context.players]);
-
     const validateInput = (value) => {
         if (value === '') {
             setError([true, 'Sorry, you need to add something']);

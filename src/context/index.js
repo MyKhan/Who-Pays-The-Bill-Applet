@@ -7,6 +7,7 @@ const MyProvider = (props) => {
 
     const [stage, setStage] = useState(1);
     const [players, setPlayers] = useState([]);
+    const [result, setResult] = useState("");
 
     const addPlayerHandler = (name) => {
         setPlayers( (prevState) => {
@@ -36,9 +37,19 @@ const MyProvider = (props) => {
         }
     }
 
+    const generateLooser = () => {
+        setResult(players[Math.floor(Math.random()*players.length)]);
+      };
+
+      const resetGame = () => {
+        setStage(1);
+        setResult("");
+        setPlayers([]);
+      }
+
     return (
         <>
-            <MyContext.Provider value = {{ stage, players, addPlayer: addPlayerHandler, removePlayer: removePlayerHandler, next: nextHandler }}>
+            <MyContext.Provider value = {{ stage, players, result, addPlayer: addPlayerHandler, removePlayer: removePlayerHandler, next: nextHandler, getLooser: generateLooser, reset: resetGame }}>
                 {props.children}
             </MyContext.Provider>
             <ToastContainer />
