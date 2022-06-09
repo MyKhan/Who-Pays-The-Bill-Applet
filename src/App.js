@@ -1,20 +1,26 @@
-import React, {useContext} from 'react';
-import { MyContext } from './context';
-import Stage1 from './components/stage1';
-import Stage2 from './components/stage2';
+import React from 'react';
+import ReactDOM from "react-dom/client";
+import {  BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from './components/home';
+import BillPaying from './components/billPaying';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-const App = (props) => {
 
-    const context = useContext(MyContext);
+const App = (props) => {
     
     return (
-        <div>
-            <header>Who Pays the Bill?</header>
-            {context.stage === 1 ? <Stage1 /> : <Stage2 /> }
-        </div>
+        <BrowserRouter>
+                <header>
+                    <Link to=''>Home</Link><br />
+                    <Link to='/payingthebills'>Paying the Bills</Link>
+                </header>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='payingthebills' element={<BillPaying />} />
+                </Routes>
+        </BrowserRouter>
     );
 };
 
