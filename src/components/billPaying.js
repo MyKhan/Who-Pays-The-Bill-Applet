@@ -2,8 +2,11 @@ import React, {useContext} from 'react';
 import { MyContext } from '../context';
 import Stage1 from './stage1';
 import Stage2 from './stage2';
+import { useNavigate } from 'react-router-dom'; 
 
 const BillPaying = (props) => {
+
+    let navigate = useNavigate();
 
     const context = useContext(MyContext);
     

@@ -1,26 +1,24 @@
 import React from 'react';
-import ReactDOM from "react-dom/client";
-import {  BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from './components/home';
 import BillPaying from './components/billPaying';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import SharedLayout from './components/SharedLayout';
 
 
 const App = (props) => {
     
     return (
-        <BrowserRouter>
-                <header>
-                    <Link to=''>Home</Link><br />
-                    <Link to='/payingthebills'>Paying the Bills</Link>
-                </header>
+            <div class="container">
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='payingthebills' element={<BillPaying />} />
+                    <Route path='/' element={<SharedLayout />}>
+                        <Route index element={<Home />} />
+                        <Route path='billPaying' element={<BillPaying />} />
+                    </Route>
                 </Routes>
-        </BrowserRouter>
+            </div>
     );
 };
 
